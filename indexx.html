@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lista de Presentes</title>
+
+<style>
+body{
+    font-family: Arial, sans-serif;
+    background:#F9E9D9;
+    margin:0;
+    padding:0;
+}
+
+header{
+    background:#808080;
+    color:white;
+    text-align:center;
+    padding:20px 0;
+}
+
+header h1{
+    margin:0;
+}
+
+.produtos{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
+    max-width:1200px;
+    margin:30px auto;
+    padding:0 10px;
+}
+
+.produto{
+    background:#fff;
+    padding:15px;
+    border-radius:8px;
+    text-align:center;
+    box-shadow:0 0 8px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
+}
+
+.produto:hover{
+    transform: translateY(-5px);
+}
+
+.produto img{
+    width:100%;
+    height:180px;
+    object-fit:contain;
+    background:#fff;
+    border-radius:6px;
+    margin-bottom:10px;
+}
+
+.preco{
+    font-weight:bold;
+    margin:8px 0;
+    color:#808080;
+}
+
+button{
+    background:#808080;
+    color:#fff;
+    border:none;
+    padding:10px;
+    width:100%;
+    border-radius:5px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+button:hover{
+    background:#6e6e6e;
+}
+
+.pix{
+    display:none;
+    margin-top:10px;
+    background:#f9f9f9;
+    padding:10px;
+    border-radius:6px;
+    box-shadow:0 0 5px rgba(0,0,0,0.1);
+}
+
+.pix img{
+    width:160px;
+    margin:8px 0;
+}
+
+.chave{
+    background:#eee;
+    padding:6px;
+    border-radius:4px;
+    font-size:14px;
+    word-break:break-all;
+}
+
+footer{
+    text-align:center;
+    padding:20px 0;
+    margin-top:30px;
+    color:#555;
+    font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>Lista de Presentes dos Noivos ❤️</h1>
+</header>
+
+<div class="produtos"></div>
+
+<footer>
+    Obrigado por ajudar a tornar nosso casamento ainda mais especial!
+</footer>
+
+<script>
+const produtos = [
+    { nome:"Netflix", valor:60, img:"https://upload.wikimedia.org/wikipedia/commons/0/08/Netflix_2015_logo.svg", pixImg:"pix60.jpg" },
+    { nome:"Acessório de última geração para cuidar da casa", valor:90, img:"https://cdn.leroymerlin.com.br/products/balde_esfregao_spin_mop_mopi_giratorio_360_com_centrifuga_em_1572438328_179f_600x600.png", pixImg:"pix90.jpg" },
+    { nome:"Air Fryer", valor:200, img:"https://m.media-amazon.com/images/I/81DHdkzgECL._AC_SY879_.jpg", pixImg:"pix200.jpg" },
+    { nome:"Assadeira de vidro", valor:50, img:"https://m.media-amazon.com/images/I/41sSFKPZtzL._AC_.jpg", pixImg:"pix50.jpg" },
+    { nome:"Conjunto de copos", valor:40, img:"https://m.media-amazon.com/images/I/51QnWSKLc4L._AC_SX679_.jpg", pixImg:"pix40.jpg" },
+    { nome:"Conjunto de pratos rasos", valor:81, img:"https://m.media-amazon.com/images/I/515ImoVma6S._AC_SY300_SX300_QL70_ML2_.jpg", pixImg:"pix81.jpg" },
+    { nome:"Conjunto de travesseiros", valor:120, img:"https://m.media-amazon.com/images/I/61M5fjeKWpL._AC_SX679_.jpg", pixImg:"pix120.jpg" },
+    { nome:"Faqueiro 48 peças de Aço Inox com Lâminas Serrilhadas", valor:115, img:"https://m.media-amazon.com/images/I/61twTyd0WbL._AC_SX679_.jpg", pixImg:"pix115.jpg" },
+    { nome:'Garanta a "internet" banda larga por 1 mês na casa nova dos noivos', valor:140, img:"https://img.odcdn.com.br/wp-content/uploads/2019/02/20190221121344.jpg", pixImg:"pix140.jpg" },
+    { nome:"Garantir que o noivo faça um jantar delicioso para a noiva", valor:81, img:"https://gourmetjr.com.br/wp-content/uploads/2018/03/JPEG-image-B6230B799E47-1_1170x600_acf_cropped_490x292_acf_cropped.jpeg", pixImg:"pix81.jpg" },
+    { nome:"Jogo de Cama Casal 4 Peças - 100% Algodão", valor:91, img:"https://m.media-amazon.com/images/I/51U2yQ096TL._AC_SX679_.jpg", pixImg:"pix91.jpg" },
+    { nome:"Mesa de cabeceira", valor:153, img:"https://m.media-amazon.com/images/I/61A4clmQrQL._AC_SX679_.jpg", pixImg:"pix153.jpg" },
+    { nome:"Porta bolo", valor:40, img:"https://m.media-amazon.com/images/I/71waQmkJJOL._AC_SX679_.jpg", pixImg:"pix40.jpg" },
+    { nome:"Potes herméticos", valor:70, img:"https://m.media-amazon.com/images/I/51x8MCzIAnL._AC_SX679_.jpg", pixImg:"pix70.jpg" },
+    { nome:"Toalha de mesa", valor:35, img:"https://m.media-amazon.com/images/I/61lZgIYMrhL._AC_SX679_.jpg", pixImg:"pix35.jpg" },
+    { nome:"Travessa oval", valor:56, img:"https://m.media-amazon.com/images/I/61+AJXUalNS._AC_SX679_.jpg", pixImg:"pix56.jpg" },
+    { nome:"Presenteie com qualquer valor.", img:"https://media.makeameme.org/created/o-pix-e.jpg", pixImg:"pix.jpg" },
+    { nome:"Presente Surpresa", valor:100, img:"https://imgaz.staticbg.com/thumb/large/oaupload/banggood/images/17/AB/c2dadab3-fd1e-48bc-b3bd-16b45f8f8683.png.webp", pixImg:"pix100.jpg" }
+];
+
+const container = document.querySelector(".produtos");
+
+produtos.forEach((produto, i) => {
+    const div = document.createElement("div");
+    div.className = "produto";
+
+    div.innerHTML = `
+        <img src="${produto.img}" alt="${produto.nome}">
+        <h3>${produto.nome}</h3>
+        ${produto.valor ? `<div class="preco">R$ ${produto.valor},00</div>` : ""}
+        <button data-pix="pix${i}">Presentear</button>
+        <div class="pix" id="pix${i}">
+            <p><strong>Pague com Pix</strong></p>
+            <img src="${produto.pixImg}" alt="QR Code Pix">
+            <p>Chave Pix:</p>
+            <div class="chave">(85) 9 8781-4074</div>
+        </div>
+    `;
+
+    container.appendChild(div);
+});
+
+document.addEventListener("click", function(e){
+    if(e.target.matches("button[data-pix]")){
+        const id = e.target.dataset.pix;
+
+        document.querySelectorAll(".pix").forEach(p => {
+            if(p.id !== id) p.style.display = "none";
+        });
+
+        const area = document.getElementById(id);
+        area.style.display = area.style.display === "block" ? "none" : "block";
+    } else if(!e.target.closest(".pix")){
+        document.querySelectorAll(".pix").forEach(p => p.style.display = "none");
+    }
+});
+</script>
+
+</body>
+</html>
